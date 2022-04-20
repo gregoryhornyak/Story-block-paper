@@ -11,30 +11,37 @@
 - [Random Story Structure](#random-story-structure)
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
+    - [Layout](#layout)
     - [Problem with story games](#problem-with-story-games)
     - [Problem with choice-based games](#problem-with-choice-based-games)
     - [The solution](#the-solution)
   - [Story-blocks in details](#story-blocks-in-details)
-    - [Samples](#samples)
-    - [Structure of a story-block](#structure-of-a-story-block)
+    - [The concept](#the-concept)
+    - [Structure of a story-block network](#structure-of-a-story-block-network)
     - [Segments of a story-block](#segments-of-a-story-block)
-  - [Branches](#branches)
+  - [Network of story-blocks](#network-of-story-blocks)
+    - [Branches](#branches)
+  - [Story-block builder](#story-block-builder)
+    - [The idea of the S-B builder](#the-idea-of-the-s-b-builder)
+    - [Samples](#samples)
   - [Memory](#memory)
   - [Conclusion](#conclusion)
 
 ---
 
+[//]: Notes-are-marked-with-brackets.
+
+>Captions are written in this style
+
 <div style="page-break-after: always"></div>
 
 ## Introduction
 
+### Layout
+
 This proposal is a theory about a concept of a random generated story based game structure to create as __realistic__ and __random__ __enviroment__ and __storyline__ for the players as possible. In the early stage it could be only available for single player games, but I don't doubt this is the limit.
 
 In this paper I am going to outline the problems with the storylines in games nowadays, propose a model as a solution and discover the possible implementations using current technologies.
-
-Notes are marked with brackets.
-
->Captions are written in this style
 
 ### Problem with story games
 
@@ -52,14 +59,12 @@ My idea is the concept of _'story-blocks'_, which are modular blocks or pieces o
 
 ## Story-blocks in details
 
-</div>
+### The concept
 
-### Samples
+Story-blocks are modular blocks or pieces of a narrative. The easiest way to imagine is by thinking about puzzle pieces. Not all of them fit with the others, each piece has its own place and its content. 
+Each block should have an ID to act like a name and also possible to include a title (like a chapter of a book).
 
-The story-block generator should have access to a huge set of samples to work from. These should include __names__, __places__, __times__ and other variables like coordinates. These are set by the developer OR obtained from the Internet.
-The latter one would need sources of events / scenes to analyse and build into the game. This approach seems very complicated compared to the first one.
-
-### Structure of a story-block
+### Structure of a story-block network
 
 A story-block should be built up like a [linked list](https://www.tutorialspoint.com/data_structures_algorithms/linked_list_algorithms.htm) (in CompSci), each story-block has a __head__, a __body__ and a __tail__. 
 
@@ -87,7 +92,7 @@ The question is that does the body change based on previous story-blocks. The an
 
 ```py
 class Story():
-    pass
+    the_story = {}
 
 class Head():
     def __init__(self, attributes:dict):
@@ -114,7 +119,9 @@ class StoryBlock():
 
 <div style="page-break-after: always"></div>
 
-## Branches
+## Network of story-blocks
+
+### Branches
 
 In case multiple heads are suitable for a single tail a __rhombus__ or __junction__ should be formed where the player can choose between the heads.
 
@@ -137,6 +144,17 @@ The answer is a __hub__ instead of the junction, which is as seemless as possibl
 - or by performing an action which has a consequence
 
 Implementing the hub seems the most difficult at the current state due to its variety.
+
+## Story-block builder
+
+### The idea of the S-B builder
+
+There must be a fabricator which assembles the blocks by the given rules. It should follow a random generated instruction set to hocus
+
+### Samples
+
+The story-block generator should have access to a huge set of samples to work from. These should include __names__, __places__, __times__ and other variables like coordinates. These are set by the developer __or__ obtained from the Internet via an API.
+The latter one would need sources of events / scenes to analyse and build into the game. This approach seems very complicated compared to the first one.
 
 ## Memory
 
